@@ -1,31 +1,23 @@
 <template>
-  <div v-if="error">{{ error }}</div>
-  <Suspense v-else>
-    <template #default>
-      <User />
-    </template>
-    <template #fallback>
-      <span>Loading ...</span>
-    </template>
-  </Suspense>
+  <pre>{{ name }}</pre>
+  <pre>{{ age }}</pre>
+
+  <User v-model:name="name" v-model:age="age"/>
 </template>
 
 <script>
-import { ref, onErrorCaptured } from "vue";
+import { ref } from "vue";
 import User from "./components/User.vue";
 
 export default {
   components: { User },
   setup() {
-    const error = ref(null);
-
-    onErrorCaptured((e) => {
-      error.value = e;
-      return true;
-    });
+    const name = ref("");
+    const age = ref(0);
 
     return {
-      error
+      name,
+      age
     }
   }
 }
