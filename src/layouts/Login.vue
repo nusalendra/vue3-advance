@@ -1,6 +1,6 @@
 <template>
     <div>
-        Username <input />
+        Username <input v-model="username" type="text"/>
         Password <input />
     </div>
 
@@ -9,16 +9,23 @@
 
 <script>
 import { useRouter } from "vue-router";
+import { ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
     setup() {
         const router = useRouter();
+        const store = useStore();
+        const username = ref('');
+
         const login = () => {
             localStorage.setItem("authenticated", true);
+            store.commit('setUsername', username.value);
             router.push({ name: 'Home' });
         }
         return {
-            login
+            login,
+            username
         }
     }
 }
