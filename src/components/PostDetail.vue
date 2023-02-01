@@ -14,8 +14,8 @@ export default {
             body: ''
         });
 
-        const route = useRoute();
-        const id = route.params.id;
+        const router = useRoute();
+        const id = router.params.id;
 
         const result = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
 
