@@ -14,7 +14,8 @@ export default {
     setup() {
         const router = useRouter();
         const login = () => {
-            router.push({ name: 'Home' })
+            localStorage.setItem("authenticated", true);
+            router.push({ name: 'Home' });
         }
         return {
             login
