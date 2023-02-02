@@ -29,7 +29,7 @@ export default {
         data.body = body;
 
         const addLike = () => {
-            store.commit('increment');
+            store.commit('post/increment');
         }
 
         return {

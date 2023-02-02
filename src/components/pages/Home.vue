@@ -17,16 +17,27 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
-import { computed } from "vue";
 
 export default {
   computed: {
-    ...mapState(['totalLikes', 'username', 'credential']),
-    ...mapGetters(['fakeTotalLikes'])
+    ...mapState({
+      totalLikes : state => state.post.totalLikes, 
+      username: state => state.user.username, 
+      credential: state => state.user.credential
+  }),
+    ...mapGetters({
+      fakeTotalLikes: 'post/fakeTotalLikes'
+    })
   },
   methods: {
-    ...mapMutations(['increment', 'setUsername', 'setCredential']),
-    ...mapActions(['getCredential'])
+    ...mapMutations({
+      increment: 'post/increment', 
+      setUsername: 'user/setUsername', 
+      setCredential: 'user/setCredential'
+    }),
+    ...mapActions({
+      getCredential: 'user/getCredential'
+    })
   }
 }
 </script>
