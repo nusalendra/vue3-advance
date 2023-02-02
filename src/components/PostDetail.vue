@@ -2,13 +2,13 @@
    <h2>{{ title }}</h2>
    <div>{{ body }}</div>
 
-   <p><button @click="addLike">Like</button></p>
+   <button @click="addLike">Like</button>
 </template>
 
 <script>
 import { reactive, toRefs } from "vue";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
+import { useStore } from "vuex"
 
 export default {
     async setup() {

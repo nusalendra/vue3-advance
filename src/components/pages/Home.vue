@@ -1,9 +1,11 @@
 <template>
   Homepage
 
-  <p>Selamat datang {{ username }}</p>
+  <h2>selamat datang {{ username }}</h2>
 
-  <p>Total like : {{ likes }}</p>
+  <pre>{{ credential }}</pre>
+
+  <p>total likes : {{ likes }}</p>
 </template>
 
 <script>
@@ -13,20 +15,24 @@ import { computed, ref, onMounted } from "vue";
 export default {
   setup() {
     const store = useStore();
-    const username = ref('');
-    
+    const username = ref('')
+
     const likes = computed(() => {
       return store.state.totalLikes
     });
 
-    onMounted(() => {
-      username.value = store.state.username
+    const credential = computed(() => {
+      return store.state.credential
     })
 
+    onMounted(() => {
+      username.value = store.state.username
+    });
 
     return {
       likes,
-      username
+      username,
+      credential
     }
   }
 }

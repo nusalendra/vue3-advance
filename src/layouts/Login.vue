@@ -9,8 +9,8 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { ref } from "vue";
 import { useStore } from "vuex";
+import { ref } from "vue";
 
 export default {
     setup() {
@@ -21,6 +21,8 @@ export default {
         const login = () => {
             localStorage.setItem("authenticated", true);
             store.commit('setUsername', username.value);
+            store.dispatch('getCredential');
+
             router.push({ name: 'Home' });
         }
         return {
