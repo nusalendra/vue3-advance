@@ -3,37 +3,30 @@
 
   <h2>selamat datang {{ username }}</h2>
 
+  <button @click="increment">Add Like</button>
+  <button @click="setUsername('nusalendra')">Change Username</button>
+  <button @click="getCredential">Change Profile</button>
+
+
   <pre>{{ credential }}</pre>
 
-  <p>total likes : {{ likes }}</p>
+
+  <p>total likes : {{ totalLikes }}</p>
+  <p>total fake likes : {{ fakeTotalLikes }}</p>
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { computed, ref, onMounted } from "vue";
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
+import { computed } from "vue";
 
 export default {
-  setup() {
-    const store = useStore();
-    const username = ref('')
-
-    const likes = computed(() => {
-      return store.state.totalLikes
-    });
-
-    const credential = computed(() => {
-      return store.state.credential
-    })
-
-    onMounted(() => {
-      username.value = store.state.username
-    });
-
-    return {
-      likes,
-      username,
-      credential
-    }
+  computed: {
+    ...mapState(['totalLikes', 'username', 'credential']),
+    ...mapGetters(['fakeTotalLikes'])
+  },
+  methods: {
+    ...mapMutations(['increment', 'setUsername', 'setCredential']),
+    ...mapActions(['getCredential'])
   }
 }
 </script>
