@@ -1,7 +1,7 @@
 <template>
     <Suspense>
         <template #default>
-            <PostList />
+            <PostList text="test defineProps" @submit="handleSubmit"/>
         </template>
         <template #fallback>
             Loading ...
@@ -9,9 +9,10 @@
     </Suspense>
 </template>
 
-<script>
+<script setup>
 import PostList from "../PostList.vue";
-export default {
-    components: { PostList }
+
+const handleSubmit = (value) => {
+    console.log(value);
 }
 </script>

@@ -13,21 +13,14 @@
     <router-view />
 </template>
 
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 
-export default {
-    setup() {
-        const router = useRouter();
-        
-        const logout = () => {
-            localStorage.setItem("authenticated", false);
-            router.push({name: "Login"});
-        }
-        return {
-            logout
-        }
-    }
+const router = useRouter();
+
+const logout = () => {
+    localStorage.setItem("authenticated", false);
+    router.push({name: "Login"});
 }
 </script>
 

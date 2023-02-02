@@ -1,4 +1,6 @@
 <template>
+    <pre>{{ props }}</pre>
+    <button @click="emit('submit', 'testing emit defineEmits')">Klik Emit</button>
     <ul v-for="(item, index) in list" :key="index">
         <li>
             <router-link :to="`/posts/${item.id}`">{{ item.title }}</router-link>
@@ -6,22 +8,28 @@
     </ul>
 </template>
 
-<script>
-import { reactive, toRefs } from "vue";
+<script setup>
+import { reactive } from "vue";
 
-export default {
-    async setup() {
-        const data = reactive({
-            list: []
-        });
+const data = reactive({
+    list: []
+});
 
-        const result = await fetch('https://jsonplaceholder.typicode.com/posts/');
-
-        data.list = await result.json();
-
-        return {
-            ...toRefs(data)
-        }
+const props = defineProps({
+    text: {
+        type: String,
+        default: ''
+    },
+    nomor: {
+        type: Number,
+        default: 0
     }
-}
+});
+
+const emit = defineEmits(['submit']);
+
+const result = await fetch('https://jsonplaceholder.typicode.com/posts/');
+data.list = await result.json();
+
+const list = data.list
 </script>

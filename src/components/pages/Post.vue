@@ -9,9 +9,6 @@
     </Suspense>
 </template>
 
-<script>
+<script setup>
 import PostDetail from "../PostDetail.vue";
-export default {
-    components: { PostDetail }
-}
 </script>
